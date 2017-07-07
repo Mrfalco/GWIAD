@@ -1,4 +1,7 @@
 var activePlot = 1;
+var day = 1;
+var year = 1;
+var season = "Summer";
 var plot = {
 	growing1:"Nothing",
 	growing2:"Nothing",
@@ -50,7 +53,27 @@ function updatePlotDisplay(){
 	document.getElementById ("plotNum").innerHTML = activePlot;
 }
 	
-window.setInterval(function(){//It keeps happening!, runs every 1 sec
+window.setInterval(function(){//runs every 10 sec
+day += 1;
+if (day > 90){
+	day = 1;
+	if (season = "Summer"){
+		season = "Fall";
+	}
+	if (season = "Fall"){
+		season = "Winter";
+	}
+	if (season = "Winter"){
+		season = "Spring";
+		year += 1;
+	}
+	if (season = "Spring"){
+		season = "Summer";
+	}
 
+}
+document.getElementById ("season").innerHTML = season;
+document.getElementById ("day").innerHTML = day;
+document.getElementById ("year").innerHTML = year;
 
-}, 1000);
+}, 10000);
