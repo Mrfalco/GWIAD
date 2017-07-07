@@ -15,17 +15,31 @@
 			<div onClick= "activeMenu(1)">Farm</div>
 			<div onClick= "activeMenu(2)">Factory</div>
 			<div onClick= "activeMenu(3)">Resturant</div>
+			<div onClick= "activeMenu(4)"> R & D </div>
 		</div>
 		
 		<div id="farmWindow" class="active">
-			<div id="farmPlot"></div><div id="farmPlot"></div><div id="farmPlot"></div>
-			<div id="farmPlot"></div><div id="farmPlot"></div><div id="farmPlot"></div>
-			<div id="farmPlot"></div><div id="farmPlot"></div><div id="farmPlot"></div>
+			<div onClick="changePlot(1)" class = "farmPlot" id="plotDis1"></div>
+			<div onClick="changePlot(2)" class = "farmPlot" id="plotDis2"></div>
+			<div onClick="changePlot(3)" class = "farmPlot" id="plotDis3"></div>
+			<div onClick="changePlot(4)" class = "farmPlot" id="plotDis4"></div>
+			<div onClick="changePlot(5)" class = "farmPlot" id="plotDis5"></div>
+			<div onClick="changePlot(6)" class = "farmPlot" id="plotDis6"></div>
+			<div onClick="changePlot(7)" class = "farmPlot" id="plotDis7"></div>
+			<div onClick="changePlot(8)" class = "farmPlot" id="plotDis8"></div>
+			<div onClick="changePlot(9)" class = "farmPlot" id="plotDis9"></div>
 		</div>
 		
 		<div id="farmBar" class="active">
-		
-		</div>
+			<div id="plotSelected">
+				plot <span id="plotNum">1</span></br>
+				Growing: <span id="plotGrowing">Nothing</span>
+				<div style="margin-top:20px;">
+					<div style="background-image:url('wheat.png');" class="cropButton"></div>
+					<div style="background-image:url('grape.png');" class="cropButton"></div>
+				</div>
+				
+			</div>
 		
 		<div id="factoryWindow" class="hide">
 			Test
