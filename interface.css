@@ -33,10 +33,59 @@
 	float:left;
 }
 
+#farmPlot{	
+	background-image:url("farmPlot.png");
+	width :220px;
+	height:200px;
+	float:left;
+}
+
+#factoryWindow {
+	width:660px;
+	height:600px;
+	border:2px solid black;
+	float:left;
+}
+
+#factoryBar {
+	width:334px;
+	height:600px;
+	margin-left:2px;
+	border:2px solid black;
+	float:left;
+}
+
+#resturantWindow {
+	width:660px;
+	height:600px;
+	border:2px solid black;
+	float:left;
+}
+
+#resturantBar {
+	width:334px;
+	height:600px;
+	margin-left:2px;
+	border:2px solid black;
+	float:left;
+}
+
+#farmPlot:nth-child(4){
+	clear:left;
+}
+
 #farmBar {
 	width:334px;
 	height:600px;
 	margin-left:2px;
 	border:2px solid black;
 	float:left;
+}
+
+.hide{
+	display:none;
+}
+
+.active{
+	
 }
