@@ -9,9 +9,10 @@
 	<body>	
 		<div id="header">
 			<span style="margin-left:50px;">Cash</span>
-			<span id="season" style="margin-left:200px;">Summer</span> 
+			Grown:<span id="temp" style="margin-left:50px;"></span>(TEMP)
+			<div style="float:right;"><span id="season" style="margin-left:200px;">Summer</span> 
 			Day <span id="day">1</span>
-			Year <span id ="year">1</span>
+			Year <span id ="year">1</span></div>
 		</div>
 		
 		<div id="buttonBar">
@@ -35,14 +36,18 @@
 		
 		<div id="farmBar" class="active">
 			<div id="plotSelected">
-				plot <span id="plotNum">1</span></br>
+				Plot <span id="plotNum">1</span></br>
 				Growing: <span id="plotGrowing">Nothing</span>
-				<div style="margin-top:20px;">
-					<div style="background-image:url('wheat.png');" class="cropButton"></div>
-					<div style="background-image:url('grape.png');" class="cropButton"></div>
+				<div id="cropBox" style="margin-top:20px;">
+					<div onClick="changePlant(0)" style="background-image:url('wheat.png');" class="cropButton"></div>
+					<div onClick="changePlant(1)" style="background-image:url('grape.png');" class="cropButton"></div>
 				</div>
+				<span id="sCropName"></span></br>
+				<span id="sCropTime"></span></br>
+				<button type=Button onclick=plant()>Plant</button>
 				
 			</div>
+		</div>
 		
 		<div id="factoryWindow" class="hide">
 			Test

@@ -12,14 +12,16 @@
 	}
 
 #buttonBar div{
-	width:240px;
+	width:248.5px;
 	height:25px;
-	border:1px solid black;
+	border:2px solid black;
 	float:left;
 	margin-bottom:2px;
+	text-align: center;
 }
 
 #buttonBar div:not(:first-child){
+	border-left:0px;
 }
 	
 
@@ -32,16 +34,16 @@
 
 .farmPlot{	
 	background-image:url("farmPlot.png");
-	width :218px;
-	height:198px;
+	width :220px;
+	height:200px;
 	float:left;
 }
 
 .farmPlot2{
 	background-image:url("farmPlot.png");
 	float:left;
-	width :218px;
-	height:198px;
+	width :220px;
+	height:200px;
 	background-color:grey;
 }
 
@@ -53,9 +55,16 @@
 	margin-left:10px;
 }
 
+#cropBox{
+	height:400px;
+	width:328px;
+	border:1px solid black;
+	margin-left:2px;
+}
+
 .cropButton{
-	height:25px;
-	width:25px;
+	height:30px;
+	width:30px;
 	border: 2px solid black;
 	margin: 3px;
 	float: left;
@@ -101,6 +110,7 @@
 	margin-left:2px;
 	border:2px solid black;
 	float:left;
+
 }
 
 .hide{
