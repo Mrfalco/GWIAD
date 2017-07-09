@@ -10,6 +10,59 @@
 	font-size:25px;
 	width:1000px;
 	}
+	
+.storageBar{
+	position:absolute;
+	border:2px solid black;
+	margin-top:1px;
+	font-size:25px;
+	width:1000px;
+	height:30px;
+	transition: height 2s;
+	background-color:white;
+}
+
+#storCon1{
+	width:800px;
+	font-size:25px;
+	padding-left:2px;
+}
+
+.storCon{
+	position:absolute;
+	top:76px;
+	border-left:2px solid black;
+	border-right:2px solid black;
+	border-bottom:2px solid black;
+	transition: height 2s;
+	background-color:white;
+	width:910px;
+	height:0px;
+	font-size:25px;
+	border-bottom-left-radius:20px;
+	border-bottom-right-radius:20px;
+}
+
+.storBlock{
+	width:150px;
+	height:30px;
+	float:left;
+}
+
+.storBlock div{
+	display:block;
+	float:left;
+}
+
+.storBlock img{
+	width:30px;
+	height:30px;
+	float:left;
+}
+
+#buttonBar{
+	margin-top:38px;
+}
 
 #buttonBar div{
 	width:248.5px;
@@ -24,10 +77,22 @@
 	border-left:0px;
 }
 	
+.hide{
+	display:none;
+}
 
-#farmWindow {
+.activeWindow{
 	width:660px;
 	height:600px;
+	border:2px solid black;
+	float:left;
+	clear:left;
+}
+
+.activeBar{
+	width:334px;
+	height:600px;
+	margin-left:2px;
 	border:2px solid black;
 	float:left;
 }
@@ -70,53 +135,9 @@
 	float: left;
 }
 
-#factoryWindow {
-	width:660px;
-	height:600px;
-	border:2px solid black;
-	float:left;
-}
-
-#factoryBar {
-	width:334px;
-	height:600px;
-	margin-left:2px;
-	border:2px solid black;
-	float:left;
-}
-
-#resturantWindow {
-	width:660px;
-	height:600px;
-	border:2px solid black;
-	float:left;
-}
-
-#resturantBar {
-	width:334px;
-	height:600px;
-	margin-left:2px;
-	border:2px solid black;
-	float:left;
-}
-
 #farmPlot:nth-child(4){
 	clear:left;
 }
 
-#farmBar {
-	width:334px;
-	height:600px;
-	margin-left:2px;
-	border:2px solid black;
-	float:left;
 
-}
 
-.hide{
-	display:none;
-}
-
-.active{
-	
-}

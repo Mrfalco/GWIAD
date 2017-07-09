@@ -4,6 +4,7 @@ var year = 1;
 var season = "Summer";
 var grown = 0;
 var selectedPlant = 0;
+var plantStorage = [];
 var plot = {
 	growing1:"Nothing",
 	growing2:"Nothing",
@@ -23,10 +24,19 @@ var plot = {
 	time7:-1,
 	time8:-1,
 	time9:-1,
+	growId1:0,
+	growId2:0,
+	growId3:0,
+	growId4:0,
+	growId5:0,
+	growId6:0,
+	growId7:0,
+	growId8:0,
+	growId9:0,
 	
 }
 
-var plants = [["wheat", 8,"Fall", -2],["Grapes", 12,"Spring",-3]];
+var plants = [["wheat", 1,"Fall", -2],["Grapes", 1,"Spring",-3]];
 
 function activeMenu(page){//This is where the menu tabs change
 	document.getElementById ("farmWindow").className = 'hide';//SHUT. DOWN. EVERYTHING.
@@ -37,16 +47,30 @@ function activeMenu(page){//This is where the menu tabs change
 	document.getElementById ("resturantBar").className = 'hide';
 	changePlot(10);
 	if (page == 1){
-		document.getElementById ("farmWindow").className = 'active';//Turn on only what is needed.
-		document.getElementById ("farmBar").className = 'active';
+		document.getElementById ("farmWindow").className = 'activeWindow';//Turn on only what is needed.
+		document.getElementById ("farmBar").className = 'activeBar';
 	}
 	if (page == 2){
-		document.getElementById ("factoryWindow").className = 'active';
-		document.getElementById ("factoryBar").className = 'active';	
+		document.getElementById ("factoryWindow").className = 'activeWindow';
+		document.getElementById ("factoryBar").className = 'activeBar';	
 	}
 	if (page == 3){
-		document.getElementById ("resturantWindow").className = 'active';
-		document.getElementById ("resturantBar").className = 'active';	
+		document.getElementById ("resturantWindow").className = 'activeWindow';
+		document.getElementById ("resturantBar").className = 'activeBar';	
+	}
+}
+
+var storOpen = false
+function openStorage(){
+	if (storOpen){
+		document.getElementById ("storCon2").style.height = "0px";
+		document.getElementById ("ar").innerHTML = "▼";
+		storOpen = false;
+	}
+	else {
+		document.getElementById ("storCon2").style.height = "200px";
+		document.getElementById ("ar").innerHTML = "▲";
+		storOpen = true;
 	}
 }
 
@@ -66,14 +90,32 @@ function updatePlotDisplay(){
 	document.getElementById ("plotNum").innerHTML = activePlot;
 }
 
+function updateStorage(){
+	document.getElementById ("storCon1").innerHTML = "";
+	document.getElementById ("storCon2").innerHTML = "";
+	for (i = 0; i < plantStorage.length; i++){
+		if (plantStorage[i] != NaN){
+			if (i < 6){
+				document.getElementById ("storCon1").innerHTML += "<div class ='storBlock'><img src='icon/"+ i +".png'><div> : " + plantStorage[i] + "</div></div>";
+			}
+			else{
+				document.getElementById ("storCon2").innerHTML += "<div class ='storBlock'><img src='icon/"+ i +".png'><div> : " + plantStorage[i] + "</div></div>";
+			}
+		}
+	}
+}
+
 function changePlant(id){
+	document.getElementById ("p"+selectedPlant).style.backgroundColor = "white";
 	document.getElementById ("sCropName").innerHTML = plants[id][0];
 	document.getElementById ("sCropTime").innerHTML = plants[id][1] + " days";
 	selectedPlant = id;
+	document.getElementById ("p"+selectedPlant).style.backgroundColor = "lightgrey";
 }
 
 function plant(){
 	plot["growing" + activePlot] = plants[selectedPlant][0];
+	plot["growId" + activePlot] = selectedPlant;
 	if (season == plants[selectedPlant][2]){
 		plot["time" + activePlot] = plants[selectedPlant][1] - plants[selectedPlant][3];
 	}
@@ -104,17 +146,28 @@ if (day > 90){
 
 }
 while(x != 0){
+	plot["time" + x] -= 1;
 	if (plot["time" + x] != -1){
 		if (plot["time" + x] == 0){
-			grown += 1;
+			if (plantStorage[plot["growId" + x]] == undefined){
+				plantStorage[plot["growId" + x]] = 0;
+			}
+			plantStorage[plot["growId" + x]] += 1;
 			plot["growing" + x] = "Nothing";
 			updatePlotDisplay();
+			var y = 0;
+			for (i = 0; i < plantStorage.length; i++) {
+				if (plantStorage[i] != NaN){
+					y += plantStorage[i];
+				}
+			} 
+			updateStorage();
 		}
-		plot["time" + x] -= 1;
-		document.getElementById ("temp").innerHTML = grown;
+		
 	}	
 	x -= 1;
 }
+
 document.getElementById ("season").innerHTML = season;
 document.getElementById ("day").innerHTML = day;
 document.getElementById ("year").innerHTML = year;

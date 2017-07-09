@@ -9,10 +9,21 @@
 	<body>	
 		<div id="header">
 			<span style="margin-left:50px;">Cash</span>
-			Grown:<span id="temp" style="margin-left:50px;"></span>(TEMP)
 			<div style="float:right;"><span id="season" style="margin-left:200px;">Summer</span> 
 			Day <span id="day">1</span>
 			Year <span id ="year">1</span></div>
+		</div>
+		
+		<div id ="storageBar" class ="storageBar" onClick="openStorage()">
+		<div id ="storCon1">
+			
+		</div>
+		
+			<span style="float:right;" id="ar">▼</span>
+			
+		</div>
+		<div id ="storCon2" class="storCon">
+			
 		</div>
 		
 		<div id="buttonBar">
@@ -22,7 +33,7 @@
 			<div onClick= "activeMenu(4)"> R & D </div>
 		</div>
 		
-		<div id="farmWindow" class="active">
+		<div id="farmWindow" class="activeWindow">
 			<div onClick="changePlot(1)" class = "farmPlot" id="plotDis1"></div>
 			<div onClick="changePlot(2)" class = "farmPlot" id="plotDis2"></div>
 			<div onClick="changePlot(3)" class = "farmPlot" id="plotDis3"></div>
@@ -34,13 +45,13 @@
 			<div onClick="changePlot(9)" class = "farmPlot" id="plotDis9"></div>
 		</div>
 		
-		<div id="farmBar" class="active">
+		<div id="farmBar" class="activeBar">
 			<div id="plotSelected">
 				Plot <span id="plotNum">1</span></br>
 				Growing: <span id="plotGrowing">Nothing</span>
 				<div id="cropBox" style="margin-top:20px;">
-					<div onClick="changePlant(0)" style="background-image:url('wheat.png');" class="cropButton"></div>
-					<div onClick="changePlant(1)" style="background-image:url('grape.png');" class="cropButton"></div>
+					<div id = "p0" onClick="changePlant(0)" style="background-image:url('Icon/0.png');" class="cropButton"></div>
+					<div id = "p1"onClick="changePlant(1)" style="background-image:url('Icon/1.png');" class="cropButton"></div>
 				</div>
 				<span id="sCropName"></span></br>
 				<span id="sCropTime"></span></br>
