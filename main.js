@@ -36,7 +36,15 @@ var plot = {
 	
 }
 
-var plants = [["wheat", 1,"Fall", -2],["Grapes", 1,"Spring",-3]];
+//Format [Name,Grow time,Best season,Modifier,Death Season,Multi yield?,Yields,Yield time]
+var plants = [
+["Wheat", 8,"Fall", -2,"Winter",false],
+["Grapes", 12,"Spring",-3,"Winter",false],
+["Potato",15,"",0,"Winter",false],
+["Tomato",20,"",0,"Winter",true,3,5],
+["Carrot",9,"",0,"Winter",false],
+["Jalapeno",10,"",0,"Winter"],
+];
 
 function activeMenu(page){//This is where the menu tabs change
 	document.getElementById ("farmWindow").className = 'hide';//SHUT. DOWN. EVERYTHING.
@@ -91,15 +99,17 @@ function updatePlotDisplay(){
 }
 
 function updateStorage(){
+	var x = 0;
 	document.getElementById ("storCon1").innerHTML = "";
 	document.getElementById ("storCon2").innerHTML = "";
 	for (i = 0; i < plantStorage.length; i++){
-		if (plantStorage[i] != NaN){
-			if (i < 6){
-				document.getElementById ("storCon1").innerHTML += "<div class ='storBlock'><img src='icon/"+ i +".png'><div> : " + plantStorage[i] + "</div></div>";
+		if (plantStorage[i] != undefined && plantStorage[i] != 0){
+			x += 1;
+			if (x < 6){
+				document.getElementById ("storCon1").innerHTML += "<div class ='storBlock'><img src='Icon/"+ i +".png'><div> : " + plantStorage[i] + "</div></div>";
 			}
 			else{
-				document.getElementById ("storCon2").innerHTML += "<div class ='storBlock'><img src='icon/"+ i +".png'><div> : " + plantStorage[i] + "</div></div>";
+				document.getElementById ("storCon2").innerHTML += "<div class ='storBlock'><img src='Icon/"+ i +".png'><div> : " + plantStorage[i] + "</div></div>";
 			}
 		}
 	}
