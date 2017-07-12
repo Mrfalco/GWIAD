@@ -113,6 +113,15 @@
 	background-color:grey;
 }
 
+.Growth{
+	height:0px;
+	width:220px;
+	margin-top:140px;
+	transition-property: margin-top, height;
+	transition-duration: 10s;
+	transition-timing-function: linear;
+}
+
 .farmButton{
 	width:300px;
 	height:25px;

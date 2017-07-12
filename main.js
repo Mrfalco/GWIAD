@@ -126,6 +126,8 @@ function changePlant(id){
 function plant(){
 	plot["growing" + activePlot] = plants[selectedPlant][0];
 	plot["growId" + activePlot] = selectedPlant;
+	document.getElementById ("Growth"+activePlot).style.height = 5 + "px";
+	document.getElementById ("Growth"+activePlot).style.marginTop = 140 + "px";
 	if (season == plants[selectedPlant][2]){
 		plot["time" + activePlot] = plants[selectedPlant][1] - plants[selectedPlant][3];
 	}
@@ -155,15 +157,19 @@ if (day > 90){
 	}
 
 }
-while(x != 0){
-	plot["time" + x] -= 1;
+var Gr = 5;
+while(x != 0){	
 	if (plot["time" + x] != -1){
+		plot["time" + x] -= 1;
 		if (plot["time" + x] == 0){
 			if (plantStorage[plot["growId" + x]] == undefined){
 				plantStorage[plot["growId" + x]] = 0;
 			}
 			plantStorage[plot["growId" + x]] += 1;
 			plot["growing" + x] = "Nothing";
+			document.getElementById ("Growth"+x).style.height = 0 + "px";
+			document.getElementById ("Growth"+x).style.marginTop = 140 + "px";
+			document.getElementById ("Growth"+x).style.transitionDuration = "0s";
 			updatePlotDisplay();
 			var y = 0;
 			for (i = 0; i < plantStorage.length; i++) {
@@ -172,6 +178,12 @@ while(x != 0){
 				}
 			} 
 			updateStorage();
+		}
+		else if(plot["time" + x] > 0){
+			Gr = ((plants[plot["growId" + x]][1] - plot["time" + x])*(130 / plants[plot["growId" + x]][1]));
+			document.getElementById ("Growth"+x).style.transitionDuration="10s" ;
+			document.getElementById ("Growth"+x).style.height = Gr + "px";
+			document.getElementById ("Growth"+x).style.marginTop = 140 - Gr + "px";
 		}
 		
 	}	
