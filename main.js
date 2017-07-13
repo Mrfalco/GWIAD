@@ -5,6 +5,8 @@ var season = "Summer";
 var grown = 0;
 var selectedPlant = 0;
 var plantStorage = [];
+var plantStorage2 = [];
+var activeStor = plantStorage;
 var plot = {
 	growing1:"Nothing",
 	growing2:"Nothing",
@@ -49,8 +51,8 @@ var plants = [
 function activeMenu(page){//This is where the menu tabs change
 	document.getElementById ("farmWindow").className = 'hide';//SHUT. DOWN. EVERYTHING.
 	document.getElementById ("farmBar").className = 'hide';
-	document.getElementById ("factoryWindow").className = 'hide';
-	document.getElementById ("factoryBar").className = 'hide';
+	document.getElementById ("kitchenWindow").className = 'hide';
+	document.getElementById ("kitchenBar").className = 'hide';
 	document.getElementById ("resturantWindow").className = 'hide';
 	document.getElementById ("resturantBar").className = 'hide';
 	changePlot(10);
@@ -59,12 +61,21 @@ function activeMenu(page){//This is where the menu tabs change
 		document.getElementById ("farmBar").className = 'activeBar';
 	}
 	if (page == 2){
-		document.getElementById ("factoryWindow").className = 'activeWindow';
-		document.getElementById ("factoryBar").className = 'activeBar';	
+		document.getElementById ("kitchenWindow").className = 'activeWindow';
+		document.getElementById ("kitchenBar").className = 'activeBar';	
 	}
 	if (page == 3){
 		document.getElementById ("resturantWindow").className = 'activeWindow';
 		document.getElementById ("resturantBar").className = 'activeBar';	
+	}
+}
+
+function activeMenu2(page){//This is where the menu tabs change
+	document.getElementById ("shipBar").className = 'hide';
+	document.getElementById ("kitBut4").style.backgroundColor = 'white';
+	if (page == 4){
+		document.getElementById ("kitBut4").style.backgroundColor = 'lightgrey';
+		document.getElementById ("shipBar").className = 'activeBar2';
 	}
 }
 
@@ -88,7 +99,7 @@ function changePlot(page){//This is where the menu tabs change
 		document.getElementById ("plotDis" + activePlot).className = 'farmPlot';
 		activePlot = page;
 		activePlotB = "plot" + page;
-		updatePlotDisplay()
+		updatePlotDisplay();
 	}	
 }
 	
@@ -103,24 +114,35 @@ function updateStorage(){
 	document.getElementById ("storCon1").innerHTML = "";
 	document.getElementById ("storCon2").innerHTML = "";
 	for (i = 0; i < plantStorage.length; i++){
-		if (plantStorage[i] != undefined && plantStorage[i] != 0){
+		if (activeStor[i] != undefined && activeStor[i] != 0){
 			x += 1;
 			if (x < 6){
-				document.getElementById ("storCon1").innerHTML += "<div class ='storBlock'><img src='Icon/"+ i +".png'><div> : " + plantStorage[i] + "</div></div>";
+				document.getElementById ("storCon1").innerHTML += "<div class ='storBlock'><img src='Icon/"+ i +".png'><div> : " + activeStor[i] + "</div></div>";
 			}
 			else{
-				document.getElementById ("storCon2").innerHTML += "<div class ='storBlock'><img src='Icon/"+ i +".png'><div> : " + plantStorage[i] + "</div></div>";
+				document.getElementById ("storCon2").innerHTML += "<div class ='storBlock'><img src='Icon/"+ i +".png'><div> : " + activeStor[i] + "</div></div>";
 			}
 		}
 	}
 }
 
-function changePlant(id){
-	document.getElementById ("p"+selectedPlant).style.backgroundColor = "white";
-	document.getElementById ("sCropName").innerHTML = plants[id][0];
-	document.getElementById ("sCropTime").innerHTML = plants[id][1] + " days";
+function changeStor(id){
+	activeStor = id;
+	updateStorage();
+	document.getElementById ("storBarA").style.backgroundColor = "white";
+	document.getElementById ("storBarB").style.backgroundColor = "white";
+	if (id == plantStorage){document.getElementById ("storBarA").style.backgroundColor = "lightgrey";}
+	else {document.getElementById ("storBarB").style.backgroundColor = "lightgrey";}
+}
+
+function changePlant(id,zone){
+	document.getElementById ("p"+zone+selectedPlant).style.backgroundColor = "white";
 	selectedPlant = id;
-	document.getElementById ("p"+selectedPlant).style.backgroundColor = "lightgrey";
+	document.getElementById ("p"+zone+selectedPlant).style.backgroundColor = "lightgrey";
+	if(zone=="a"){
+		document.getElementById ("sCropName").innerHTML = plants[id][0];
+		document.getElementById ("sCropTime").innerHTML = plants[id][1] + " days";
+	}
 }
 
 function plant(){
@@ -136,26 +158,42 @@ function plant(){
 	}
 	updatePlotDisplay()
 }
+
+window.onload = function(){
+	updateStorage();
+}
+
+function send(){
+	if (plantStorage[selectedPlant] > 0){
+		if (plantStorage2[selectedPlant] == undefined){
+			plantStorage2[selectedPlant] = 0;
+		}
+		plantStorage2[selectedPlant] += 1;
+		plantStorage[selectedPlant] -= 1;
+		updateStorage();
+	}	
+}
 	
 window.setInterval(function(){//runs every 10 sec
 day += 1;
 var x = 9;
 if (day > 90){
 	day = 1;
-	if (season == "Summer"){
-		season = "Fall";
+	switch(season){
+		case "Summer":
+			season = "Fall";
+			break;
+		case "Fall":
+			season = "Winter";
+			break;
+		case "Winter":
+			season = "Spring";
+			year += 1;
+			break;
+		case "Spring":
+			season = "Summer";
+			break;
 	}
-	if (season == "Fall"){
-		season = "Winter";
-	}
-	if (season == "Winter"){
-		season = "Spring";
-		year += 1;
-	}
-	if (season == "Spring"){
-		season = "Summer";
-	}
-
 }
 var Gr = 5;
 while(x != 0){	

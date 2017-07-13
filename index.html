@@ -14,12 +14,16 @@
 			Year <span id ="year">1</span></div>
 		</div>
 		
-		<div id ="storageBar" class ="storageBar" onClick="openStorage()">
-		<div id ="storCon1">
+		<div id ="storageBar" class ="storageBar">
+		
+		<div id="storBarA" class="storBu" onClick="changeStor(plantStorage)">A</div>
+		<div id="storBarB" class="storBu" onClick="changeStor(plantStorage2)">B</div>
+		
+		<div id ="storCon1" onClick="openStorage()">
 			
 		</div>
 		
-			<span style="float:right;" id="ar">▼</span>
+			<span style='float:right;' id='ar'>▼</span>
 			
 		</div>
 		<div id ="storCon2" class="storCon">
@@ -28,9 +32,8 @@
 		
 		<div id="buttonBar">
 			<div onClick= "activeMenu(1)">Farm</div>
-			<div onClick= "activeMenu(2)">Factory</div>
+			<div onClick= "activeMenu(2)">Kitchen</div>
 			<div onClick= "activeMenu(3)">Resturant</div>
-			<div onClick= "activeMenu(4)"> R & D </div>
 		</div>
 		
 		<div id="farmWindow" class="activeWindow">
@@ -50,12 +53,12 @@
 				Plot <span id="plotNum">1</span></br>
 				Growing: <span id="plotGrowing">Nothing</span>
 				<div id="cropBox" style="margin-top:20px;">
-					<div id = "p0" onClick="changePlant(0)" style="background-image:url('Icon/0.png');" class="cropButton"></div>
-					<div id = "p1"onClick="changePlant(1)" style="background-image:url('Icon/1.png');" class="cropButton"></div>
-					<div id = "p2"onClick="changePlant(2)" style="background-image:url('Icon/2.png');" class="cropButton"></div>
-					<div id = "p3"onClick="changePlant(3)" style="background-image:url('Icon/3.png');" class="cropButton"></div>
-					<div id = "p4"onClick="changePlant(4)" style="background-image:url('Icon/4.png');" class="cropButton"></div>
-					<div id = "p5"onClick="changePlant(5)" style="background-image:url('Icon/5.png');" class="cropButton"></div>
+					<div id = "pa0" onClick="changePlant(0,'a')" style="background-image:url('Icon/0.png');" class="cropButton"></div>
+					<div id = "pa1" onClick="changePlant(1,'a')" style="background-image:url('Icon/1.png');" class="cropButton"></div>
+					<div id = "pa2" onClick="changePlant(2,'a')" style="background-image:url('Icon/2.png');" class="cropButton"></div>
+					<div id = "pa3" onClick="changePlant(3,'a')" style="background-image:url('Icon/3.png');" class="cropButton"></div>
+					<div id = "pa4" onClick="changePlant(4,'a')" style="background-image:url('Icon/4.png');" class="cropButton"></div>
+					<div id = "pa5" onClick="changePlant(5,'a')" style="background-image:url('Icon/5.png');" class="cropButton"></div>
 				</div>
 				<span id="sCropName"></span></br>
 				<span id="sCropTime"></span></br>
@@ -64,11 +67,27 @@
 			</div>
 		</div>
 		
-		<div id="factoryWindow" class="hide">
-			Test
+		<div id="kitchenWindow" class="hide">
+			<div id="kitBut1" class="kitBut" Style="border-bottom:1px solid black;border-right:1px solid black;">Office</div>
+			<div id="kitBut2" class="kitBut" Style="border-left:1px solid black;border-bottom:1px solid black;">Planning</div>
+			<div id="kitBut3" class="kitBut" Style="border-right:1px solid black;border-top:1px solid black;clear:left;">Lab</div>
+			<div id="kitBut4" class="kitBut" Style="border-top:1px solid black;border-left:1px solid black;" onclick="activeMenu2(4)">Shipping</div>
 		</div>
 		
-		<div id="factoryBar" class="hide">
+		<div id="kitchenBar" class="hide">
+			<div id="shipBar" class="hide">
+				Shipping
+				<div id="cropBox" style="margin-top:20px;">
+					<div id = "pb0" onClick="changePlant(0,'b')" style="background-image:url('Icon/0.png');" class="cropButton"></div>
+					<div id = "pb1" onClick="changePlant(1,'b')" style="background-image:url('Icon/1.png');" class="cropButton"></div>
+					<div id = "pb2" onClick="changePlant(2,'b')" style="background-image:url('Icon/2.png');" class="cropButton"></div>
+					<div id = "pb3" onClick="changePlant(3,'b')" style="background-image:url('Icon/3.png');" class="cropButton"></div>
+					<div id = "pb4" onClick="changePlant(4,'b')" style="background-image:url('Icon/4.png');" class="cropButton"></div>
+					<div id = "pb5" onClick="changePlant(5,'b')" style="background-image:url('Icon/5.png');" class="cropButton"></div>
+				</div>
+				<button type=Button onclick=send()>Send</button>
+				<button type=Button onclick=sell()>Sell</button>
+			</div>
 		
 		</div>
 		

@@ -22,10 +22,18 @@
 	background-color:white;
 }
 
+.storBu{
+	width:30px;
+	height:30px;
+	float:left;
+}
+
 #storCon1{
-	width:800px;
+	width:900px;
+	height:30px;
 	font-size:25px;
 	padding-left:2px;
+	float:left;
 }
 
 .storCon{
@@ -149,5 +157,16 @@
 	clear:left;
 }
 
+.kitBut{
+	width:329px;
+	height:299.5px;
+	float:left;
+}
+
+.activeBar2{
+	width:334px;
+	height:600px;
+	float:left;
+}
 
 
