@@ -163,6 +163,15 @@
 	float:left;
 }
 
+.truckDis{
+	float:left;
+	border:1px solid black;
+	margin-top:5px;
+	margin-bottom:5px;
+	width:280px;
+	height:60px;
+}
+
 .activeBar2{
 	width:334px;
 	height:600px;

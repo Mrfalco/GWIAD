@@ -2,11 +2,21 @@ var activePlot = 1;
 var day = 1;
 var year = 1;
 var season = "Summer";
+var ctrl = false;
 var grown = 0;
 var selectedPlant = 0;
 var plantStorage = [];
 var plantStorage2 = [];
 var activeStor = plantStorage;
+var sTruck = 1;
+var truck = {
+	vehicles:1,
+	level1:0,
+	transporting1:"Nothing",
+	transportId1:-1,
+	capacity1:10,
+	sendTotal1:0,
+}
 var plot = {
 	growing1:"Nothing",
 	growing2:"Nothing",
@@ -38,14 +48,14 @@ var plot = {
 	
 }
 
-//Format [Name,Grow time,Best season,Modifier,Death Season,Multi yield?,Yields,Yield time]
+//Format [Name,Grow time,Best season,Modifier,yield,Death Season,Multi yield?,Yields,Yield time]
 var plants = [
-["Wheat", 8,"Fall", -2,"Winter",false],
-["Grapes", 12,"Spring",-3,"Winter",false],
-["Potato",15,"",0,"Winter",false],
-["Tomato",20,"",0,"Winter",true,3,5],
-["Carrot",9,"",0,"Winter",false],
-["Jalapeno",10,"",0,"Winter"],
+["Wheat", 8,"Fall", -2,5,"Winter",false],
+["Grapes", 12,"Spring",-3,9,"Winter",false],
+["Potato",15,"",0,2,"Winter",false],
+["Tomato",20,"",0,4,"Winter",true,3,5],
+["Carrot",9,"",0,2,"Winter",false],
+["Jalapeno",10,"",0,4,"Winter"],
 ];
 
 function activeMenu(page){//This is where the menu tabs change
@@ -142,6 +152,22 @@ function changePlant(id,zone){
 	if(zone=="a"){
 		document.getElementById ("sCropName").innerHTML = plants[id][0];
 		document.getElementById ("sCropTime").innerHTML = plants[id][1] + " days";
+		document.getElementById ("sCropYield").innerHTML ="Yields " + plants[id][4];
+		document.getElementById ("plantBut").disabled = true;
+		if(plot["time" + activePlot] <= 0){
+			document.getElementById ("plantBut").disabled = false;
+		}
+		if (ctrl){plant();}
+	}
+	if(zone=="b"){
+		document.getElementById ("sendBut").disabled = false;
+		if (plantStorage[id] != undefined){
+			document.getElementById ("sendBut").max = plantStorage[id];
+		}
+		else {
+			document.getElementById ("sendBut").value = 0;
+			document.getElementById ("sendBut").disabled = true;
+		}
 	}
 }
 
@@ -163,16 +189,46 @@ window.onload = function(){
 	updateStorage();
 }
 
-function send(){
-	if (plantStorage[selectedPlant] > 0){
-		if (plantStorage2[selectedPlant] == undefined){
-			plantStorage2[selectedPlant] = 0;
+function send(id){
+	if (plantStorage[truck["transportId" + id]] > 0){
+		if (plantStorage2[truck["transportId" + id]] == undefined){
+			plantStorage2[truck["transportId" + id]] = 0;
 		}
-		plantStorage2[selectedPlant] += 1;
-		plantStorage[selectedPlant] -= 1;
+		if (truck["sendTotal"+id] >= truck["capacity" + id]){
+			plantStorage2[truck["transportId" + id]] += truck["capacity" + id];
+			truck["sendTotal"+id] -= truck["capacity" + id];
+		}
+		else {
+			plantStorage2[truck["transportId" + id]] += truck["sendTotal"+id];
+			truck["sendTotal"+id] = 0;
+		}
+		document.getElementById ("sShipAmount").innerHTML = truck["sendTotal"+sTruck];
+		if(truck["sendTotal"+id] == 0){
+			document.getElementById ("sShipAmount").innerHTML = "";
+			document.getElementById ("sShipItem").innerHTML = "nothing";
+		}
 		updateStorage();
 	}	
 }
+
+function setSend(){
+	truck["transporting"+sTruck] = plants[selectedPlant][0];
+	truck["transportId"+sTruck] = selectedPlant;
+	truck["sendTotal"+sTruck] = document.getElementById ("sendBut").value;
+	plantStorage[truck["transportId" + sTruck]] -= truck["sendTotal"+sTruck];
+	document.getElementById ("sShipItem").innerHTML = truck["transporting"+sTruck];
+	document.getElementById ("sShipAmount").innerHTML = truck["sendTotal"+sTruck];
+	updateStorage();
+}
+
+document.addEventListener('keydown', function(event) {
+    if(event.keyCode == 17) {
+        ctrl = true;
+}});
+document.addEventListener('keyup', function(event) {
+    if(event.keyCode == 17) {
+        ctrl = false;
+}});
 	
 window.setInterval(function(){//runs every 10 sec
 day += 1;
@@ -196,14 +252,14 @@ if (day > 90){
 	}
 }
 var Gr = 5;
-while(x != 0){	
+while(x != 0){
 	if (plot["time" + x] != -1){
 		plot["time" + x] -= 1;
 		if (plot["time" + x] == 0){
 			if (plantStorage[plot["growId" + x]] == undefined){
 				plantStorage[plot["growId" + x]] = 0;
 			}
-			plantStorage[plot["growId" + x]] += 1;
+			plantStorage[plot["growId" + x]] += plants[plot["growId" + x]][4];
 			plot["growing" + x] = "Nothing";
 			document.getElementById ("Growth"+x).style.height = 0 + "px";
 			document.getElementById ("Growth"+x).style.marginTop = 140 + "px";
@@ -225,6 +281,11 @@ while(x != 0){
 		}
 		
 	}	
+	x -= 1;
+}
+x = truck.vehicles;
+while(x != 0){
+	send(x);
 	x -= 1;
 }
 

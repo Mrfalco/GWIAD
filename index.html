@@ -62,7 +62,8 @@
 				</div>
 				<span id="sCropName"></span></br>
 				<span id="sCropTime"></span></br>
-				<button type=Button onclick=plant()>Plant</button>
+				<span id="sCropYield"></span></br>
+				<button id="plantBut" type=Button onclick=plant() disabled>Plant</button>
 				
 			</div>
 		</div>
@@ -76,8 +77,15 @@
 		
 		<div id="kitchenBar" class="hide">
 			<div id="shipBar" class="hide">
-				Shipping
-				<div id="cropBox" style="margin-top:20px;">
+				Shipping</br>
+				<span style="float:left;">◄</span>
+				<div class = "truckDis">
+					Truck 1</br>
+					Shipping <span id="sShipAmount"></span> <span id="sShipItem">nothing</span></br>
+					Capacity: <span id="sShipCap">10</span> a day
+				</div>
+				<span style="float:left;">►</span>
+				<div id="cropBox" style="margin-top:20px;clear:left;">
 					<div id = "pb0" onClick="changePlant(0,'b')" style="background-image:url('Icon/0.png');" class="cropButton"></div>
 					<div id = "pb1" onClick="changePlant(1,'b')" style="background-image:url('Icon/1.png');" class="cropButton"></div>
 					<div id = "pb2" onClick="changePlant(2,'b')" style="background-image:url('Icon/2.png');" class="cropButton"></div>
@@ -85,8 +93,10 @@
 					<div id = "pb4" onClick="changePlant(4,'b')" style="background-image:url('Icon/4.png');" class="cropButton"></div>
 					<div id = "pb5" onClick="changePlant(5,'b')" style="background-image:url('Icon/5.png');" class="cropButton"></div>
 				</div>
-				<button type=Button onclick=send()>Send</button>
+				<input id="sendBut" type="number" name="quantity" min="0" max="10" disabled></br>
+				<button type=Button onclick=setSend()>Send</button>
 				<button type=Button onclick=sell()>Sell</button>
+				<button type=Button onclick=cancelShip()>Cancel Shipment</button>
 			</div>
 		
 		</div>
