@@ -50,6 +50,7 @@
 	border-bottom-left-radius:20px;
 	border-bottom-right-radius:20px;
 	overflow:hidden;
+	z-index:500;
 }
 
 .storBlock{
@@ -91,11 +92,13 @@
 }
 
 .activeWindow{
+	overflow:hidden;
 	width:660px;
 	height:600px;
 	border:2px solid black;
 	float:left;
 	clear:left;
+	position:relative;
 }
 
 .activeBar{
@@ -170,6 +173,25 @@
 	margin-bottom:5px;
 	width:280px;
 	height:60px;
+}
+
+.customerQ{
+	overflow:hidden;
+	position:absolute;
+	bottom:320px;
+	margin-left:-62px;
+	width:1500px;
+	height:125px;
+	border:1px solid black;
+}
+
+.customer{
+	position:absolute;
+	top:0px;
+	bottom:0px;
+	right:0px;
+	height:125px;
+	width:62px;
 }
 
 .activeBar2{

@@ -3,7 +3,7 @@
 <meta charset="UTF-8">
 	<head>
 		<link rel="stylesheet" type"text/css" href="interface.css" />
-		<title>GRANDMA WANTS IT AL DENTE:GRANDMA NEEDS IT AL DENTE</title>
+		<title>SAURON NEEDS IT MASTERCRAFTED:SAURON DEMANDS IT MASTERCRAFTED</title>
 		
 	</head>
 	<body>	
@@ -31,39 +31,18 @@
 		</div>
 		
 		<div id="buttonBar">
-			<div onClick= "activeMenu(1)">Farm</div>
-			<div onClick= "activeMenu(2)">Kitchen</div>
-			<div onClick= "activeMenu(3)">Resturant</div>
+			<div onClick= "activeMenu(1)">Mine</div>
+			<div onClick= "activeMenu(2)">Workshop</div>
+			<div onClick= "activeMenu(3)">Army</div>
 		</div>
 		
 		<div id="farmWindow" class="activeWindow">
-			<div onClick="changePlot(1)" class = "farmPlot" id="plotDis1"><img id="Growth1" class="Growth" src="farmGrow.png"></img></div>
-			<div onClick="changePlot(2)" class = "farmPlot" id="plotDis2"><img id="Growth2" class="Growth" src="farmGrow.png"></img></div>
-			<div onClick="changePlot(3)" class = "farmPlot" id="plotDis3"><img id="Growth3" class="Growth" src="farmGrow.png"></img></div>
-			<div onClick="changePlot(4)" class = "farmPlot" id="plotDis4"><img id="Growth4" class="Growth" src="farmGrow.png"></img></div>
-			<div onClick="changePlot(5)" class = "farmPlot" id="plotDis5"><img id="Growth5" class="Growth" src="farmGrow.png"></img></div>
-			<div onClick="changePlot(6)" class = "farmPlot" id="plotDis6"><img id="Growth6" class="Growth" src="farmGrow.png"></img></div>
-			<div onClick="changePlot(7)" class = "farmPlot" id="plotDis7"><img id="Growth7" class="Growth" src="farmGrow.png"></img></div>
-			<div onClick="changePlot(8)" class = "farmPlot" id="plotDis8"><img id="Growth8" class="Growth" src="farmGrow.png"></img></div>
-			<div onClick="changePlot(9)" class = "farmPlot" id="plotDis9"><img id="Growth9" class="Growth" src="farmGrow.png"></img></div>
+			<div onClick="dig()" class = "farmPlot" id="pickAxe"><img id="Growth1" class="Growth" src="farmGrow.png"></img></div>
 		</div>
 		
 		<div id="farmBar" class="activeBar">
 			<div id="plotSelected">
-				Plot <span id="plotNum">1</span></br>
-				Growing: <span id="plotGrowing">Nothing</span>
-				<div id="cropBox" style="margin-top:20px;">
-					<div id = "pa0" onClick="changePlant(0,'a')" style="background-image:url('Icon/0.png');" class="cropButton"></div>
-					<div id = "pa1" onClick="changePlant(1,'a')" style="background-image:url('Icon/1.png');" class="cropButton"></div>
-					<div id = "pa2" onClick="changePlant(2,'a')" style="background-image:url('Icon/2.png');" class="cropButton"></div>
-					<div id = "pa3" onClick="changePlant(3,'a')" style="background-image:url('Icon/3.png');" class="cropButton"></div>
-					<div id = "pa4" onClick="changePlant(4,'a')" style="background-image:url('Icon/4.png');" class="cropButton"></div>
-					<div id = "pa5" onClick="changePlant(5,'a')" style="background-image:url('Icon/5.png');" class="cropButton"></div>
-				</div>
-				<span id="sCropName"></span></br>
-				<span id="sCropTime"></span></br>
-				<span id="sCropYield"></span></br>
-				<button id="plantBut" type=Button onclick=plant() disabled>Plant</button>
+			<span id="pickYield"></span>
 				
 			</div>
 		</div>
@@ -101,9 +80,8 @@
 		
 		</div>
 		
-		<div id="resturantWindow" style="background-image:url('res0.png');" class="hide">
-			<div style="position:absolute;background-image:url('cust1.png');bottom:300px;left:400px;height:100px;width:50px">
-			
+		<div id="resturantWindow" style="background-image:url('res0.png');overflow:hidden;" class="hide">
+			<div id = "cusQ" class="customerQ">
 			</div>
 		</div>
 		
