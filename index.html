@@ -3,7 +3,7 @@
 <meta charset="UTF-8">
 	<head>
 		<link rel="stylesheet" type"text/css" href="interface.css" />
-		<title>SAURON NEEDS IT MASTERCRAFTED:SAURON DEMANDS IT MASTERCRAFTED</title>
+		<title>SAURON DESIRES IT MASTERCRAFTED:SAURON DEMANDS IT MASTERCRAFTED</title>
 		
 	</head>
 	<body>	
@@ -16,7 +16,7 @@
 		
 		<div id ="storageBar" class ="storageBar">
 		
-		<div id="storBarA" class="storBu" onClick="changeStor(plantStorage)">A</div>
+		<div id="storBarA" class="storBu" style="background-Color: lightgrey" onClick="changeStor(storage)">A</div>
 		<div id="storBarB" class="storBu" onClick="changeStor(plantStorage2)">B</div>
 		
 		<div id ="storCon1" onClick="openStorage()">
@@ -43,6 +43,8 @@
 		<div id="farmBar" class="activeBar">
 			<div id="plotSelected">
 			<span id="pickYield"></span>
+			<button onClick="save()">Save</button>
+			<button onClick="load()">Load</button>
 				
 			</div>
 		</div>

@@ -33,47 +33,42 @@ var pick = {
 
 //Format [Name,Grow time,Best season,Modifier,yield,Death Season,Multi yield?,Yields,Yield time]
 var metals = [
-["Coal",100],
-["Iron",80],
+"Coal",100,
+"Iron",80,
 ];
 
 var pMetals = [
-["Nothing",1000],
-["Copper",100],
-["Silver",80],
+"Nothing",1000,
+"Copper",100,
+"Silver",80,
 ]
 
 var gGem = [
-["Nothing",1000],
-["Adamite",100],
-["Moldavite",80],
+"Nothing",1000,
+"Adamite",100,
+"Moldavite",80,
 ]
 
 var pGem = [
-["Nothing",1000],
-["Agrellite",100],
-["Sugilite",80],
+"Nothing",1000,
+"Agrellite",100,
+"Sugilite",80,
 ]
 
 function dig(){
 	var x = 0;
 	x = Math.random();
-	console.log("Selected:" + x);
 	if (x < pick.metalChance){
 		reward(metals,0,false);
-		console.log("Metal");
 	}
 	else if (x < pick.pMetalChance + pick.metalChance){
 		reward(pMetals,200,true);
-		console.log("PMetal");
 	}
 	else if (x < pick.gGemChance + pick.pMetalChance + pick.metalChance){
 		reward(gGem,400,true);
-		console.log("Green Gem");
 	}
 	else if (x < pick.pGemChance + pick.gGemChance + pick.pMetalChance + pick.metalChance){
 		reward(pGem,600,true);
-		console.log("Purple Gem");
 	}
 	updateStorage();
 }
@@ -81,8 +76,8 @@ function dig(){
 function reward(type,mul,nothMod){
 	var totChance = 0;
 	var x = 0;
-	for (i = type.length - 1; i >= 0; i--) {
-		totChance += type[i][1];
+	for (i = (type.length / 2) - 1; i >= 0; i--) {
+		totChance += type[1 + (2 * i)];
 	}
 	x = Math.floor(Math.random() * (totChance - 0 + 1)) + 0;//(max - min + 1)) + min
 	if (nothMod){//is there a chance for noting in this catagory?
@@ -92,19 +87,19 @@ function reward(type,mul,nothMod){
 		}
 	}
 	var y = 0;
-	while (type[y][1] < x){
-		x -= type[y][1];
+	while (type[1 + (2 * y)] < x){
+		x -= type[1 + (2 * y)];
 		y += 1;
 	}
 	if (storage[y + mul] == undefined){
 		storage[y + mul] = 0;
 	}
-	if(type[y][0] == "Nothing"){//Check to see if pick is dud
+	if(type[0 + (2 * y)] == "Nothing"){//Check to see if pick is dud
 		document.getElementById ("pickYield").innerHTML = 'Got Nothing!';
 	}
 	else {//Not dud? give reward
 		storage[y + mul] += pick.dupe;
-		document.getElementById ("pickYield").innerHTML = 'Got ' + pick.dupe + " " + type[y][0];
+		document.getElementById ("pickYield").innerHTML = 'Got ' + pick.dupe + " " + type[0 + (2 * y)];
 	}
 
 }
@@ -176,6 +171,7 @@ function updatePlotDisplay(){
 
 function updateStorage(){
 	var x = 0;
+	activeStor = storage;
 	document.getElementById ("storCon1").innerHTML = "";
 	document.getElementById ("storCon2").innerHTML = "";
 	for (i = 0; i < storage.length; i++){
@@ -194,9 +190,9 @@ function updateStorage(){
 function changeStor(id){
 	activeStor = id;
 	updateStorage();
-	document.getElementById ("storBarA").style.backgroundColor = "white";
-	document.getElementById ("storBarB").style.backgroundColor = "white";
-	if (id == plantStorage){document.getElementById ("storBarA").style.backgroundColor = "lightgrey";}
+	document.getElementById ("storBarA").style.backgroundColor = "";
+	document.getElementById ("storBarB").style.backgroundColor = "";
+	if (id == storage){document.getElementById ("storBarA").style.backgroundColor = "lightgrey";}
 	else {document.getElementById ("storBarB").style.backgroundColor = "lightgrey";}
 }
 
@@ -272,15 +268,25 @@ function setSend(){
 	updateStorage();
 }
 
-var activeCus = 0;
-var curCus = 0;
-var customers = [[]];
-var dish = [//Dish Name,Base Value,Ingredient 1 by Id,Ing1 Amt,Ing2 (undefined if none from here on),Ing2Amt... up to 5
-	["Fresh Bread",1.25,0,5],
-	["Spicy Mashed Potato",2.00,2,2,5,1]
-];
-var menu = [0,1];
-var tempC=0;
+var toSave = ["metals","pMetals","gGem","pGem","storage"];//for everything else
+var oToSave = [pick,truck];//for objects
+
+function save(){
+	localStorage["1"] = JSON.stringify(storage);
+	localStorage["2"] = JSON.stringify(metals);
+	localStorage["3"] = JSON.stringify(pMetals);
+	localStorage["4"] = JSON.stringify(gGem);
+	localStorage["5"] = JSON.stringify(pGem);
+}
+
+function load(){
+	storage = JSON.parse(localStorage["1"]);
+	metals = JSON.parse(localStorage["2"]);
+	pMetals = JSON.parse(localStorage["3"]);
+	gGem = JSON.parse(localStorage["4"]);
+	pGem = JSON.parse(localStorage["5"]);
+	updateStorage();
+}
 
 
 document.addEventListener('keydown', function(event) {

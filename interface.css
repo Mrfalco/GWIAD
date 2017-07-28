@@ -9,6 +9,7 @@
 	margin-bottom:1px;
 	font-size:25px;
 	width:1000px;
+	background:linear-gradient(lightgrey, white);
 	}
 	
 .storageBar{
@@ -19,7 +20,7 @@
 	width:1000px;
 	height:30px;
 	transition: height 2s;
-	background-color:white;
+	background:linear-gradient(lightgrey, white);
 }
 
 .storBu{
